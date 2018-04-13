@@ -17,7 +17,11 @@ These functions run a different section of the story based on the step the story
 #include <sstream>
 
 using namespace std; 
-
+/* The following website link from stack overflow was very helpful in 
+creating this pseudo morphic class of objects
+https://stackoverflow.com/questions/5582869/how-do-i-store-a-function-to-a-variable
+*/
+//this is my favorite bit of code
 class Sector {
 	public:
 		typedef bool (*FunctionPointer)(Sector*, Player*);  //returns a bool if the function executes properly
@@ -25,6 +29,12 @@ class Sector {
 		int currentStoryStep;
 		string description;
 		Sector(FunctionPointer functionToRun) {runFunction = functionToRun; currentStoryStep = 0; run(new Player(true)); };
+		vector<string> itemsInSector; 
+		string listItemsInSector(); 
+		bool dropItem(string); 
+		bool pickUpItem(string); 
+		bool hasItemInSector(string); 
+		
 	private:
 		FunctionPointer runFunction; 
 };

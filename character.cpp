@@ -26,11 +26,14 @@ bool Player::hasItem(string item){
 
 bool Player::addItem(string item){
 	inventory.push_back(item);
+	cout << "--you have gained: " << item << endl; 
 } 
 bool Player::removeItem(string item){
 	if(hasItem(item)){
 		for (int i = 0; i < inventory.size(); i++){
 		if (inventory[i] == item){
+			cout << endl; 
+			cout << "--you have lost: " << inventory[i] << endl; 
 			inventory.erase(inventory.begin() + i);
 			return true; 
 		}
@@ -50,8 +53,9 @@ Player::Player(){
 	string confirm; 
 	bool isName = false; 
 	
-	inventory.push_back("Starting Equipment");
-	inventory.push_back("pick");
+	inventory.push_back("Various spare parts");
+	inventory.push_back("Warp drive");
+	inventory.push_back("Bloody clothing sample");
 	
 		cout << "What is your name? : ";
 	
@@ -62,7 +66,8 @@ Player::Player(){
 		getline(cin, confirm); 
 		
 		if (confirm == "yes"){
-			cout << "Great then we can get started" << endl; 
+			cout << "Great then we can get started" << endl;
+			cout << "*********************************************************" << endl << endl; 
 			isName = true; 
 		} else {
 			cout << "Okay....I will ask again then." << endl; 

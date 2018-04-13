@@ -37,7 +37,7 @@ void runGame();
 
 
 int main(int argc, char** argv) {
-	testGame(); 
+	runGame(); 
 	return 0; 
 }
 
@@ -45,14 +45,11 @@ int main(int argc, char** argv) {
 void testGame(){
 
 	
-	GameMain game; 
-	
-	game.begin()
-	
-	
 }
 
 void runGame(){
+	GameMain game; 
+	game.begin();
 	
 }
 

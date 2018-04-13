@@ -21,6 +21,7 @@ class Player {
 	public:
 	string name; 
 	bool gameOver; 
+	int timer; 
 	vector<string> inventory; 
 	bool hasItem(string item);
 	bool addItem(string item); 

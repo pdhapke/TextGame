@@ -24,16 +24,6 @@ later to allow for save games to be implemented.
 
 using namespace std; 
 
-/* The following website link from stack overflow was very helpful in 
-creating this pseudo morphic class of objects
-https://stackoverflow.com/questions/5582869/how-do-i-store-a-function-to-a-variable
-*/
-//this is my favorite bit of code
-
-
-
-
-
 class GameMain {
 	public:
 		vector<vector<Sector> >  map;

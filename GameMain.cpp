@@ -31,6 +31,7 @@ bool GameMain::move(string direction){
 		} else {
 			y--; 
 			validDirection = true;
+			
 		}
 	} else if (direction == "down"){
 		if ((y + 1) >= map.size()){
@@ -47,13 +48,19 @@ bool GameMain::move(string direction){
 			validDirection = true;
 		} 	
 	} else if (direction == "right"){
-	if ((x + 1) > map[0].size()){
+	if ((x + 1) >= map[0].size()){
 			validDirection = false; 
 		} else {
 			x++; 
 			validDirection = true;
 		}	
 	}	
+	if(validDirection){
+		cout << "Course set captain!" << endl<< endl; 
+	} else {
+		cout << "The sector in that direction is uncharted..." << endl; 
+	}
+	
 	return validDirection; 
 }; 
 
@@ -61,7 +68,7 @@ bool GameMain::move(string direction){
 string GameMain::displayMap(){
 	stringstream output; 
 	string markedMap = asciiMap; 
-	output << "# Map #" << endl; 
+	output << "##### Current  Map ##### We are located at the 'x' ####" << endl; 
 	
 	//find the right index number to change
 	int index = 8; //the first row takes 8 characters and is the boundary of the map
@@ -89,15 +96,16 @@ void GameMain::loadWorld(){
 	
 	//setup the story here so that the brief time the player is reading the computer can run a few lines and prepare the game
 	cout << "Captain on the bridge!" << endl; 
-	cout << "It seems we have a problem Captain " << player.name << ". " endl; 
+	cout << "It seems we have a problem Captain " << player.name << ". " << endl; 
 	cout << "One of our crew, Private Huln, has been arrested for the murder of a Jovin trader." << endl; 
-	cout << "It appears he was seen at the crime scence, the victims blood was found on his clothes,"
-	cout << "and the weapon was bought with Terran currency." << endl
+	cout << "It appears he was seen at the crime scence, the victims blood was found on his clothes," << endl; 
+	cout << "only memory crystals are allowed from accused, and the weapon was bought with Terran currency." << endl; 
 	cout << endl;
-	cout << "If we are to mount a defense we will need to gather out own evidence." << endl;  
-	cout << "Speaking with Private Huln it appears that he may have been set up. He can recall" << endl;		
-	cout << "colliding with a Jovin, but says it was not the same one who was killed." << endl;  			//blood breadcrumb
-	cout << "As a matter of fact he was speaking with a a Reon when the alleged attack too place." << endl; //alibi breadcrumb
+	cout << "If we are to mount a defense we will need to gather ourwarp own evidence." << endl;  
+	cout << "We should try to gather three strong pieces of evidence to exonerate Private Huln." << endl <<endl; 
+	cout << "Speaking with the Private it appears that he may have been set up. He can recall" << endl;		
+	cout << "colliding with a Ulen, but says it was not the same species who was killed." << endl;  			//blood breadcrumb
+	cout << "As a matter of fact he was speaking with a Parvc when the alleged attack took place." << endl; //alibi breadcrumb
 	cout << "From the reports of the rest of the crew, it seems only three used Terran currency to" << endl; //payment breadcrumb
 	cout << "make purchases during our shore leave. The items purchased were a transfer capacitor " << endl; //payment breadcrumb
 	cout << "from a local Ulen, a subspace modulator from a nearby Jovin, and a phase columnator  " << endl; //payment breadcrumb
@@ -113,6 +121,7 @@ void GameMain::loadWorld(){
 	output << " _____ " << endl; 
 	output << "|'.o..|" << endl; 
 	output << "|....~|" << endl; 
+	output << "|....~|" << endl; 
 	output << "|Oº. .|" << endl; 
 	output << "|....:|" << endl; 
 	output << " ¯¯¯¯¯ " << endl; 
@@ -120,6 +129,7 @@ void GameMain::loadWorld(){
 	output << " _____ " << endl; 
 	output << "|'.o..|" << endl; 
 	output << "|....~|" << endl; 
+	output << "|....:|" << endl; 
 	output << "|O*. .|" << endl; 
 	output << "|....:|" << endl; 
 	output << " ----- " << endl;
@@ -132,31 +142,31 @@ void GameMain::loadWorld(){
 	
 	{
 		//build all 25 of the sectors
-		Sector sec1(sec1RunFunction); 
-		Sector sec2(sec1RunFunction); 
-		Sector sec3(sec1RunFunction); 
-		Sector sec4(sec1RunFunction); 
-		Sector sec5(sec1RunFunction); 
-		Sector sec6(sec1RunFunction); 
-		Sector sec7(sec1RunFunction); 
-		Sector sec8(sec1RunFunction); 
-		Sector sec9(sec1RunFunction); 
-		Sector sec10(sec1RunFunction); 
-		Sector sec11(sec1RunFunction); 
+		Sector sec1(sec01RunFunction); 
+		Sector sec2(sec02RunFunction); 
+		Sector sec3(sec03RunFunction); 
+		Sector sec4(sec04RunFunction); 
+		Sector sec5(sec05RunFunction); 
+		Sector sec6(sec06RunFunction); 
+		Sector sec7(sec07RunFunction); 
+		Sector sec8(sec08RunFunction); 
+		Sector sec9(sec09RunFunction); 
+		Sector sec10(sec10RunFunction); 
+		Sector sec11(sec11RunFunction); 
 		Sector sec12(sec12RunFunction); 
-		Sector sec13(sec1RunFunction); 
-		Sector sec14(sec1RunFunction); 
-		Sector sec15(sec1RunFunction); 
-		Sector sec16(sec1RunFunction); 
-		Sector sec17(sec1RunFunction); 
-		Sector sec18(sec1RunFunction); 
-		Sector sec19(sec1RunFunction); 
-		Sector sec20(sec1RunFunction); 
-		Sector sec21(sec1RunFunction); 
-		Sector sec22(sec1RunFunction); 
-		Sector sec23(sec1RunFunction); 
-		Sector sec24(sec1RunFunction); 
-		Sector sec25(sec1RunFunction); 
+		Sector sec13(sec13RunFunction); 
+		Sector sec14(sec14RunFunction); 
+		Sector sec15(sec15RunFunction); 
+		Sector sec16(sec16RunFunction); 
+		Sector sec17(sec17RunFunction); 
+		Sector sec18(sec18RunFunction); 
+		Sector sec19(sec19RunFunction); 
+		Sector sec20(sec20RunFunction); 
+		Sector sec21(sec21RunFunction); 
+		Sector sec22(sec22RunFunction); 
+		Sector sec23(sec23RunFunction); 
+		Sector sec24(sec24RunFunction); 
+		Sector sec25(sec25RunFunction); 
 	
 		//TODO
 	
@@ -217,24 +227,48 @@ void GameMain::loadWorld(){
 void GameMain::begin(){
 	//run the game loop until the game is over
 	while(!player.gameOver){
-		displayMap(); 
+		
+		cout << displayMap(); 
 		cout << "How would you like to proceed Captain?" << endl; 
 		cout << "You can inspect the ships stores by typing- cargo" << endl; 
-		cout << "You can revisit the current location by typing - land" << endl; 
+		cout << "You can look around the current location by typing - inspect" << endl; 
+		cout << "You can scan the area for floatsom by typing - scan" << endl;
 		cout << "You can visit another sector of space by typing - warp" << endl; 
 		cout << endl; 
 		string courseOfAction = getAction(); 
 		
 		if (courseOfAction == "warp"){		
 			cout << "Let the know helm which direction you want to travel by typing";		
-			do(!move(getDirection("up, down, left, or right: "))){
-				cout << "The sector in that direction is uncharted:" << endl; 
-			}
-			exploreSector(); 
-		} else if(courseOfAction == "land"){
+			while(!move(getDirection(" up, down, left, or right?"))){}
+		} else if(courseOfAction == "inspect"){
 			exploreSector();
 		} else if(courseOfAction == "cargo"){
-			cout << player.viewInventory(); 
+			cout << player.viewInventory()<< endl; 
+			cout << "You can jettison items you no longer want or leave";
+			if (getAction("jettison", "leave") == "jettison"){
+				cout << "type the name of the item you want to eject into space: ";
+				string ejectItem = getAction(player.inventory); 
+				if (ejectItem != "exit"){
+					player.removeItem(ejectItem);
+					map[y][x].dropItem(ejectItem);
+				} 
+			}
+		} else if (courseOfAction == "scan"){
+			//list and pick up items
+			cout << "Scanning the sector sir!" << endl; 
+			cout << "It looks like we found..." << endl; 
+			cout << map[y][x].listItemsInSector(); 
+			
+			if (map[y][x].itemsInSector.size() != 0){
+				cout << "What item would you like to retrive?: "; 
+				string retrive = getAction(map[y][x].itemsInSector); 
+				
+				if(retrive != "exit"){
+					map[y][x].pickUpItem(retrive); 
+					player.addItem(retrive); 
+				}
+			}
+			
 		}
 	
 		
