@@ -1,7 +1,7 @@
 //Peter Hapke 
 //peterdhapke@gmail.com
 //3/24/18
-
+ 
 /* 
 This code lays out the sector function declarations which will be a part of each individual sector. 
 These functions run a different section of the story based on the step the story is on
