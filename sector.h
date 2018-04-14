@@ -34,6 +34,7 @@ class Sector {
 		bool dropItem(string); 
 		bool pickUpItem(string); 
 		bool hasItemInSector(string); 
+		string eventItem; 
 		
 	private:
 		FunctionPointer runFunction; 

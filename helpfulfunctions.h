@@ -1,3 +1,8 @@
+//Peter Hapke 
+//peterdhapke@gmail.com
+//3/24/18
+
+//sets up the headers for some helpful functions
 
 #pragma once
 #ifndef HELPFULFUNCTIONS_H

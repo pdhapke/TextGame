@@ -25,13 +25,13 @@ Bloody clothing sample 		> 	Contact info for Cree  >  Blood - blood sample from 
 Lead on the Parvc 	> 	Letter of Introdocuton to Liool 	> 	Alibi -  witness statement
 Terran Arms dealer passphrase >  Evidence - Terran currency
 Memory crystal
-Enhanced Sensors
 Enhanced Shields
 Beam Cannon
-Precious metals
+Precious Metal Asteriod
 Translation Device
 Recorded dark energy data
-
+Pure Ice Comet
+Mining Sensors
 */
 string Sector::listItemsInSector(){
 	stringstream output; 
@@ -68,7 +68,7 @@ bool Sector::pickUpItem(string item) {
 }
 
 //this is the template sector function which will be used as a base for all sectors
-//all functions are named with two digits so that they function list will display them in order for faster access
+//all functions are named with two digits so that DevC will list the functions in order for faster access
 bool sec00RunFunction(Sector *sec, Player* player){
 	bool success = true; 
 	stringstream output; 
@@ -135,8 +135,8 @@ bool sec02RunFunction(Sector *sec, Player* player){
 	switch(sec->currentStoryStep){
 		case 0:  //case zero is called upon initialization so it contains the default text of the story and sets it accordingly
 			sec->currentStoryStep++; 
-			
-			output << "story"; 
+			sec->dropItem("Pure Ice Comet"); 
+			output << "This sector has an unusually high concentration of water worlds and icy comets. Often a source of mining for known space."; 
 			
 			sec->description = wordWrap(output.str());
 		break; 
@@ -206,12 +206,20 @@ bool sec04RunFunction(Sector *sec, Player* player){
 		case 0:  //case zero is called upon initialization so it contains the default text of the story and sets it accordingly
 			sec->currentStoryStep++; 
 			
-			output << "story";  
+			output << "There is an electrical storm in this sector! It is going to take time to navigate this anomally";  
 			
 			sec->description = wordWrap(output.str());
 		break; 
 		case 1:
 			cout << sec->description << endl; 
+			
+			if (player->hasItem("Mining Sensors")){
+ 
+				cout << wordWrap("Thankfully due to our upgraded sensors we can navigate this without losing much time.") << endl; 
+				
+			} else {
+				cout << wordWrap("We might lose more time than we can afford navigating this storm....") << endl; 
+			}
 			
 			
 			cout << "--Press any key to continue--" <<endl;
@@ -229,23 +237,49 @@ bool sec04RunFunction(Sector *sec, Player* player){
 bool sec05RunFunction(Sector *sec, Player* player){
 	bool success = true; 
 	stringstream output; 
+	string choice; 
 	switch(sec->currentStoryStep){
 		case 0:  //case zero is called upon initialization so it contains the default text of the story and sets it accordingly
 			sec->currentStoryStep++; 
 			
-			output << "story"; 
+			output << "There are reports of strange sightings here on the edge of mapped space..."; 
 			
 			sec->description = wordWrap(output.str());
 		break; 
 		case 1:
 			cout << sec->description << endl; 
+			cout << wordWrap("There is a strange ship on sensors captain! They seem to be broadcasting a message")<<endl; 
+			cout << "======Message=======" <<endl; 
+			cout << wordWrap("^#$SNAL#RNFCJ<KLAQWREO{P)Q!@NFN A<>SMJFN>ASFKQ@OIRTPWQE#PRFPQUI CA<!*&@&#@&^#@QWED !YU#WEDR QPC WEOSDC QOIWD}")<<endl<<endl; 	 
+			cout << "What should we do Captain?" <<endl;
+			choice = getAction("reply", "leave"); 
 			
+				if (choice == "reply"){
+					
+					cout << wordWrap("...We do not understand your communication, please know we mean you no harm...") << endl; 
+					cout << ".."<< endl; 
+					cout << "..."<< endl; 
+					cout << "The ship has ejected something into space, maybe they want us to take it, what do you want to do?"<< endl; 
+					
+					choice = getAction("take", "leave");
+					if(choice == "take") {
+						
+						cout << wordWrap("It appears to be a communications device.") << endl;
+						cout << wordWrap("Translation Device: We are pleased to offer you this gift. The people of this sector need to know we bring word of our great savior! He is the one true being and all who.....") << endl << endl; 
+						cout << wordWrap("Thank you... We we surely let the rest of the sector know.") << endl; 
+						player->addItem("Translation Device"); 
+						sec->currentStoryStep++; 
+					}	
+				}
 			
 			cout << "--Press any key to continue--" <<endl;
 			cin.get();
 		break; 
 		default:  //run this if ths story is over
-		
+			cout << sec->description << endl; 
+			
+			cout << "--Press any key to continue--" <<endl;
+			cin.get();
 		break; 	
 	}
 	
@@ -353,12 +387,17 @@ bool sec08RunFunction(Sector *sec, Player* player){
 		case 0:  //case zero is called upon initialization so it contains the default text of the story and sets it accordingly
 			sec->currentStoryStep++; 
 			
-			output << "story"; 
+			output << "This area of space is known for the secretive nature of an alien race. No one has ever learned their language"; 
 			
 			sec->description = wordWrap(output.str());
 		break; 
 		case 1:
 			cout << sec->description << endl; 
+			if (player->hasItem("Translation Device")){
+				cout<< wordWrap("Translation Device: Shhhh go away we are hiding...")<<endl;
+			} else {
+				cout<< wordWrap("1651 46568 4983 4685469 84368 36941685 894654 49685 45 9 87 3")<<endl;
+			}
 			
 			
 			cout << "--Press any key to continue--" <<endl;
@@ -366,7 +405,7 @@ bool sec08RunFunction(Sector *sec, Player* player){
 		break; 
 		default:  //run this if ths story is over
 		
-		break; 	
+		break; 	 
 	}
 	
 	return success; 
@@ -376,16 +415,47 @@ bool sec08RunFunction(Sector *sec, Player* player){
 bool sec09RunFunction(Sector *sec, Player* player){
 	bool success = true; 
 	stringstream output; 
+	string choice; 
 	switch(sec->currentStoryStep){
 		case 0:  //case zero is called upon initialization so it contains the default text of the story and sets it accordingly
 			sec->currentStoryStep++; 
-			
-			output << "story"; 
+			sec->eventItem = ""; 
+			output << "This sector has an enemy ship! We should run away or be prepared to fight."; 
 			
 			sec->description = wordWrap(output.str());
 		break; 
 		case 1:
 			cout << sec->description << endl; 
+			 
+			 if (player->hasItem("Beam Cannon")){
+			 	cout << wordWrap("Captain should we fight or run?") <<endl; 
+			 	string choice = getAction("fight", "run"); 
+			
+				if (choice == "fight"){
+					cout << wordWrap("The enemy is no match for our weapons, we easily destroy the ship.")<<endl; 
+					
+					if(sec->eventItem != ""){
+						cout << wordWrap("...it seems we get to pick up an object we lost last time we fought.")<<endl; 
+						player->addItem(sec->eventItem); 
+						sec->eventItem = ""; 
+					}
+										
+				} else {
+					cout << wordWrap("The enemy ship can see we are armed and does not seem willing to follow us.")<<endl;
+				}
+			 	
+			 } else {
+			 	cout << wordWrap("The enemy ship is firing and we have no weapons to defend ourselves! We need to run away.")<<endl;
+			 	
+				if (sec->eventItem == ""){
+					cout << wordWrap("..")<<endl;
+			 		cout << wordWrap("...")<<endl;
+			 		cout << wordWrap("We have been hit and some of our cargo has been lost!")<<endl;
+			 	
+			 		sec->eventItem = player->inventory[(player->inventory.size()-1)];
+			 		player->removeItem(sec->eventItem);
+				} 		
+			 }
 			
 			
 			cout << "--Press any key to continue--" <<endl;
@@ -451,23 +521,35 @@ bool sec10RunFunction(Sector *sec, Player* player){
 bool sec11RunFunction(Sector *sec, Player* player){
 	bool success = true; 
 	stringstream output; 
+	string choice; 
 	switch(sec->currentStoryStep){
 		case 0:  //case zero is called upon initialization so it contains the default text of the story and sets it accordingly
 			sec->currentStoryStep++; 
 			
-		output << "story"; 
+		output << "This sector is full of old wreckage from a past battle."; 
 			
 			sec->description = wordWrap(output.str());
 		break; 
 		case 1:
 			cout << sec->description << endl; 
 			
+			if(!player->hasItem("Beam Cannon")){
+				cout<< wordWrap("There seems to be some useful salvage in the wreckage. Should we inspect it further?")<<endl; 
+				choice = getAction("inspect", "leave");
+				if(choice == "inspect"){
+					cout << wordWrap("We managed to find an old model beam cannon among the wreckage. While it is old it should give us some protection.")<<endl; 
+					player->addItem("Beam Cannon"); 
+					sec->currentStoryStep++; 
+				}
+						}
 			
 			cout << "--Press any key to continue--" <<endl;
 			cin.get();
 		break; 
 		default:  //run this if ths story is over
-		
+			cout << sec->description << endl; 
+			cout << "--Press any key to continue--" <<endl;
+			cin.get();
 		break; 	
 	}
 	
@@ -475,9 +557,7 @@ bool sec11RunFunction(Sector *sec, Player* player){
 }; 
 
 //sector 12 
-///////
-//Starting space
-///////
+
 bool sec12RunFunction(Sector *sec, Player* player){
 	bool success = true; 
 	stringstream output; 
@@ -486,20 +566,24 @@ bool sec12RunFunction(Sector *sec, Player* player){
 		case 0:  //case zero is called upon initialization so it contains the default text of the story and sets it accordingly
 			sec->currentStoryStep++; 
 			
-			output << "The trial will begin soon, we should gather evidence to make our case";
+			output << "This system is home to strange solar activity.";
 			output << ""; 
 			sec->description = wordWrap(output.str());
 		break; 
 		case 1:
 			cout << sec->description << endl; 
 			
-			
+			cout << wordWrap("Captain there is a strange reading coming from the starboard side of the ship. I see nothing on the sensors but there is a massive amount of energy coming from a meter wide patch of space. All sensors are recording but we do not know what to make of it.")<<endl;
+			player->addItem("Recorded dark energy data"); 
+				sec->currentStoryStep++; 
 			cout << "--Press any key to continue--" <<endl;
 			cin.get();
 			
 		break; 
 		default:  //run this if ths story is over
-		
+			cout << sec->description << endl; 
+			cout << "--Press any key to continue--" <<endl;
+			cin.get();
 		break; 	
 	}
 	
@@ -510,17 +594,35 @@ bool sec12RunFunction(Sector *sec, Player* player){
 bool sec13RunFunction(Sector *sec, Player* player){
 	bool success = true; 
 	stringstream output; 
+	string choice; 
 	switch(sec->currentStoryStep){
 		case 0:  //case zero is called upon initialization so it contains the default text of the story and sets it accordingly
 			sec->currentStoryStep++; 
 			
-		output << "story"; 
+		output << "We are being contacted by a trader named Joilen"; 
 			
 			sec->description = wordWrap(output.str());
 		break; 
 		case 1:
 			cout << sec->description << endl; 
 			
+			if (player->hasItem("100 Credits")){
+				cout << wordWrap("I have numerous wares for sale. Please take some time to look at my supplies. I have translators, sensors, and even weapons for purchase. What would you like to buy?") << endl; 
+				choice = getAction("leave", "translator", "sensors", "weapons"); 
+				if(choice == "translator"){
+					cout << wordWrap("That will be 100 credits, enjoy!") << endl; 
+					player->addItem("Translation Device"); 
+				} else if(choice == "sensors"){
+					cout << wordWrap("That will be 100 credits, enjoy!") << endl; 
+					player->addItem("Mining Sensors"); 
+				} else if (choice == "weapons"){
+					cout << wordWrap("That will be 100 credits, enjoy!") << endl; 
+					player->addItem("Beam Cannon"); 
+				}
+				
+			}else {
+				cout << "If you have credits I have wares!" << endl; 
+			}
 			
 			cout << "--Press any key to continue--" <<endl;
 			cin.get();
@@ -537,17 +639,26 @@ bool sec13RunFunction(Sector *sec, Player* player){
 bool sec14RunFunction(Sector *sec, Player* player){
 	bool success = true; 
 	stringstream output; 
+	string choice; 
 	switch(sec->currentStoryStep){
 		case 0:  //case zero is called upon initialization so it contains the default text of the story and sets it accordingly
 			sec->currentStoryStep++; 
 			
-			output << "story"; 
+			output << "This sector is known for its shipyards and manufacturing centers."; 
 			
 			sec->description = wordWrap(output.str());
 		break; 
 		case 1:
 			cout << sec->description << endl; 
 			
+			if(player->hasItem("Precious Metal Asteriod")){
+				cout << wordWrap("We might be able to sell the Precious Metal Asteriod here, they are always looking for raw materials. What should we do?")<<endl;
+				choice = getAction("sell", "leave");
+				if (choice=="sell"){
+					cout << wordWrap("It seems like we were right. The shipyards were eager for the precious metals needed to build the more advanced systems and were willing to pay us in credits") << endl; 				
+					player->addItem("100 Credits"); 
+				}
+			}
 			
 			cout << "--Press any key to continue--" <<endl;
 			cin.get();
@@ -584,13 +695,13 @@ bool sec15RunFunction(Sector *sec, Player* player){
 				
 					if(choice == "yes"){
 						cout << wordWrap("You take Huln's bloody clothing to an expert in xenogenomics and wait as he inspects the blood. He seems surprised when his machines beep and reveal that the blood is in fact Ulen -which could not have come from the victim.") << endl;
-						cout << endl <<wordWrap("More interesting he tells you that the sample belongs to a local individual, Cree, who is know to travel within the lowest mapped quadrent!"); 
+						cout << endl <<wordWrap("More interesting he tells you that the sample belongs to a local individual, a Cree, who is know to travel within the lowest mapped quadrent!")<<endl; 
 						
 						player->removeItem("Bloody clothing sample");
 						player->addItem("Contact info for Cree"); 
 						sec->currentStoryStep++; 
 					} else {
-						cout << "We should be leaving...";
+						cout << "We should be leaving..."<<endl;
 					}
 				
 			}
@@ -599,7 +710,7 @@ bool sec15RunFunction(Sector *sec, Player* player){
 			cin.get();
 		break; 
 		default:  //run this if ths story is over
-			cout << wordWrap("Thanks to the information gathered at this medical station the last time you visited you found a lead to follow."); 
+			cout << wordWrap("Thanks to the information gathered at this medical station the last time you visited you found a lead to follow.")<<endl; 
 			cout << "--Press any key to continue--" <<endl << endl;
 			cin.get();
 		break; 	
@@ -644,11 +755,16 @@ bool sec16RunFunction(Sector *sec, Player* player){
 	
 	return success; 
 }; 
+
+///////
+//Starting space
+///////
 //sector 17
 bool sec17RunFunction(Sector *sec, Player* player){
 	bool success = true; 
 	stringstream output;
 	string action;  
+	string choice; 
 	switch(sec->currentStoryStep){
 		case 0:  //case zero is called upon initialization so it contains the default text of the story and sets it accordingly
 			sec->currentStoryStep++; 
@@ -662,42 +778,42 @@ bool sec17RunFunction(Sector *sec, Player* player){
 		case 3: //left two pieces of evidence
 		case 4: //left three pieces of evidence
 			cout << sec->description << endl; 
-			cout << "If you have any evidence to offer please do so here.": 
+			cout << "If you have any evidence to offer please do so here."<<endl;
 						
 			if(player->hasItem("Memory crystal")){
 				cout << "The accused is allowed a memory crystal" << endl; 
-				cout << "Would you like to leave the crystal here as evidence?": 
+				cout << "Would you like to leave the crystal here as evidence?"<<endl; 
 				choice = getAction("yes", "no");
 				if(choice == "yes"){
-					player.removeItem("Memory crystal"); 
+					player->removeItem("Memory crystal"); 
 					sec->currentStoryStep++; 
 				}
 				 
 			} 
 			if(player->hasItem("Evidence - Terran currency")){
 				cout << "This is the currency used to buy the weapon! It even has fingerprints..." << endl; 
-				cout << "Would you like to leave the crystal here as evidence?": 
+				cout << "Would you like to leave the crystal here as evidence?"<<endl;
 				choice = getAction("yes", "no");
 				if(choice == "yes"){
-					player.removeItem("Evidence - Terran currency"); 
+					player->removeItem("Evidence - Terran currency"); 
 					sec->currentStoryStep++; 
 				}
 			}
 			if(player->hasItem("Blood - blood sample from Cree")){
 				cout << "This blood matches what we found, and it proves the victim is alive!" << endl; 
-				cout << "Would you like to leave the crystal here as evidence?": 
+				cout << "Would you like to leave the crystal here as evidence?"<<endl; 
 				choice = getAction("yes", "no");
 				if(choice == "yes"){
-					player.removeItem("Blood - blood sample from Cree"); 
+					player->removeItem("Blood - blood sample from Cree"); 
 					sec->currentStoryStep++; 
 				}
 			}
 			if(player->hasItem("Alibi -  witness statement")){
 				cout << "This alibi means Huln was not in the area..." << endl; 
-				cout << "Would you like to leave the crystal here as evidence?": 
+				cout << "Would you like to leave the crystal here as evidence?"<<endl; 
 				choice = getAction("yes", "no");
 				if(choice == "yes"){
-					player.removeItem("Alibi -  witness statement"); 
+					player->removeItem("Alibi -  witness statement"); 
 					sec->currentStoryStep++; 
 				}
 			}
@@ -711,7 +827,8 @@ bool sec17RunFunction(Sector *sec, Player* player){
 
 		break; 
 		default:  //run this if ths story is over and 4 pieces of evidence have been left
-			cout << "As you approach the courthouse you see everyone leaving the building."
+			cout << "As you approach the courthouse you see everyone leaving the building."<<endl;
+			player->gameOver = true; 
 		break; 	
 	}
 	
@@ -759,23 +876,38 @@ bool sec18RunFunction(Sector *sec, Player* player){
 bool sec19RunFunction(Sector *sec, Player* player){
 	bool success = true; 
 	stringstream output; 
+	string choice; 
 	switch(sec->currentStoryStep){
 		case 0:  //case zero is called upon initialization so it contains the default text of the story and sets it accordingly
 			sec->currentStoryStep++; 
 			
-			output << "story"; 
+			output << "This sector is along a busy shipping course"; 
 			
 			sec->description = wordWrap(output.str());
 		break; 
 		case 1:
-			cout << sec->description << endl; 
+			cout << wordWrap("There is a ship sending out a distress beacon. They are low on parts and need help to repair their ship") << endl; 
+			
+			if(player->hasItem("Various spare parts")){
+				cout << wordWrap("We have some spare parts we could share, what would you like to do?") << endl; 
+				choice = getAction("help", "leave"); 
+				if (choice == "help"){
+					player->removeItem("Various spare parts"); 
+					cout << "The other ship's Captain is greatful and wishes us luck in our mission." << endl; 
+					sec->currentStoryStep++; 
+				}
+			}
 			
 			
 			cout << "--Press any key to continue--" <<endl;
 			cin.get();
 		break; 
 		default:  //run this if ths story is over
-		
+			cout << sec->description << endl; 
+			
+			
+			cout << "--Press any key to continue--" <<endl;
+			cin.get();
 		break; 	
 	}
 	
@@ -786,23 +918,34 @@ bool sec19RunFunction(Sector *sec, Player* player){
 bool sec20RunFunction(Sector *sec, Player* player){
 	bool success = true; 
 	stringstream output; 
+	string choice; 
 	switch(sec->currentStoryStep){
 		case 0:  //case zero is called upon initialization so it contains the default text of the story and sets it accordingly
 			sec->currentStoryStep++; 
 			
-			output << "story"; 
+			output << "This sector is full of testing fields for new technologies"; 
 		
 			sec->description = wordWrap(output.str());
 		break; 
 		case 1:
 			cout << sec->description << endl; 
-			
+			cout << wordWrap("There is a researching frantically sending us a request to test his new equipment. Apparently he has been looking for a heavily sheilded ship to test out his new force field generator and thinks we would be a great option. What would you like to do?")<<endl; 
+				choice = getAction("help", "leave"); 
+				if (choice == "help"){
+					player->addItem("Enhanced Shields"); 
+					cout << wordWrap("Our ship is now equiped with better shields which should prove useful in open space. Unfortunatly our ship is now also chared on the port side.")<< endl; 
+					sec->currentStoryStep++; 
+				}
 			
 			cout << "--Press any key to continue--" <<endl;
 			cin.get();
 		break; 
 		default:  //run this if ths story is over
-		
+			cout << sec->description << endl; 
+			
+			
+			cout << "--Press any key to continue--" <<endl;
+			cin.get();
 		break; 	
 	}
 	
@@ -811,22 +954,53 @@ bool sec20RunFunction(Sector *sec, Player* player){
 
 //sector 21
 bool sec21RunFunction(Sector *sec, Player* player){
-	bool success = true; 
+bool success = true; 
 	stringstream output; 
+	string choice; 
 	switch(sec->currentStoryStep){
 		case 0:  //case zero is called upon initialization so it contains the default text of the story and sets it accordingly
 			sec->currentStoryStep++; 
-			
-			output << "story"; 
+			sec->eventItem = ""; 
+			output << "This sector has a small squadron of enemy fighters! We should run away or be prepared to fight."; 
 			
 			sec->description = wordWrap(output.str());
 		break; 
 		case 1:
 			cout << sec->description << endl; 
-		
+			 
+			 if (player->hasItem("Enhanced Shields")){
+			 	cout << wordWrap("Thanks to our upgraded shields the enemy fighters weapons no longer have the firepower to damage our ship. What should we do?") <<endl; 
+			 	string choice = getAction("fight", "leave"); 
+			
+				if (choice == "fight"){
+					cout << wordWrap("The enemy is no match for our ship")<<endl; 
+					
+					if(sec->eventItem != ""){
+						cout << wordWrap("...it seems we get to pick up an object we lost last time we fought.")<<endl; 
+						player->addItem(sec->eventItem); 
+						sec->eventItem = ""; 
+					}
+										
+				} else {
+					cout << wordWrap("The enemy ships know they cannot hurt us and are running away.")<<endl;
+				}
+			 	
+			 } else {
+			 	cout << wordWrap("The enemy ships are firing and our shields are no match. We need to run away.")<<endl;
+			 	
+				if (sec->eventItem == ""){
+					cout << wordWrap("..")<<endl;
+			 		cout << wordWrap("...")<<endl;
+			 		cout << wordWrap("We have been hit and some of our cargo has been lost!")<<endl;
+			 	
+			 		sec->eventItem = player->inventory[(player->inventory.size()-1)];
+			 		player->removeItem(sec->eventItem);
+				} 		
+			 }
+			
 			
 			cout << "--Press any key to continue--" <<endl;
-			cin.get();	
+			cin.get();
 		break; 
 		default:  //run this if ths story is over
 		
@@ -843,8 +1017,8 @@ bool sec22RunFunction(Sector *sec, Player* player){
 	switch(sec->currentStoryStep){
 		case 0:  //case zero is called upon initialization so it contains the default text of the story and sets it accordingly
 			sec->currentStoryStep++; 
-			
-			output << "story"; 
+			sec->dropItem("Precious Metal Asteriod"); 
+			output << "This sector is known for metallic asteriods"; 
 			
 			sec->description = wordWrap(output.str());
 		break; 
@@ -867,23 +1041,40 @@ bool sec22RunFunction(Sector *sec, Player* player){
 bool sec23RunFunction(Sector *sec, Player* player){
 	bool success = true; 
 	stringstream output; 
+	string choice; 
 	switch(sec->currentStoryStep){
 		case 0:  //case zero is called upon initialization so it contains the default text of the story and sets it accordingly
 			sec->currentStoryStep++; 
 			
-			output << "story"; 
+			output << "This sector lies adjacent to an asteriod field. There are few ships around and those that are present belong to miners trying to gather what minerals they can from the metal rich rocks."; 
 			
 			sec->description = wordWrap(output.str());
 		break; 
 		case 1:
 			cout << sec->description << endl; 
-		
+			
+				cout << "Captain!" << endl; 
+				cout << wordWrap("We are detecting the a mining ship asking for assitance, apparently they need a hand breaking apart an asteriod. What would you like to do?")<<endl;
+				choice = getAction("help", "leave"); 
+				if (choice == "help"){
+					cout << wordWrap("Thank you for agreeing to help! We need to remove a piece of this asteriod but lack the firepower to do so. We can upgrade your sensors to scan through the rock if you can use your ship to help pull the metal core free." )<< endl;
+					player->addItem("Mining Sensors"); 
+					cout << wordWrap("...")<<endl;
+					cout << wordWrap("Thank you for the help! You can keep the modified sensors, this core is all that we need.") << endl; 
+					
+					sec->currentStoryStep++; 
+				} else {
+					cout << "We should leave, there is not much time before the trial." << endl; 
+				}
 			
 			cout << "--Press any key to continue--" <<endl;
 			cin.get();	
 		break; 
 		default:  //run this if ths story is over
-		
+			cout << sec->description << endl; 
+			
+			cout << "--Press any key to continue--" <<endl;
+			cin.get();
 		break; 	
 	}
 	
@@ -907,7 +1098,7 @@ bool sec24RunFunction(Sector *sec, Player* player){
 			
 			if(player->hasItem("Contact info for Cree")){
 				cout << "Captain!" << endl; 
-				cout << wordWrap("We are detecting the ship belonging to the Ulen named Cree. What would you like to do?");
+				cout << wordWrap("We are detecting the ship belonging to the Ulen named Cree. What would you like to do?")<<endl;
 				string choice = getAction("contact", "ignore"); 
 				if (choice == "contact"){
 					cout << "--We have recieved acknowledgement of our transmission --" << endl <<endl; 
@@ -939,22 +1130,40 @@ bool sec24RunFunction(Sector *sec, Player* player){
 bool sec25RunFunction(Sector *sec, Player* player){
 	bool success = true; 
 	stringstream output; 
+	string choice; 
 	switch(sec->currentStoryStep){
 		case 0:  //case zero is called upon initialization so it contains the default text of the story and sets it accordingly
 			sec->currentStoryStep++; 
 			
-			output << "story"; 
+			output << "This sector houses a number of research stations looking to scan the surrounding sectors and understand our galaxy."; 
 			
 			sec->description = wordWrap(output.str());
 		break; 
 		case 1:
 			cout << sec->description << endl; 
 			
+			if(player->hasItem("Recorded dark energy data")){
+				cout << wordWrap("I am sure someone here would be interested in our (Recorded dark energy data) perhaps we could donate our data to someone researching dark energy. What do you want to do captain?") << endl; 
+				choice = getAction("donate", "leave"); 
+				if(choice == "donate"){
+					cout << wordWrap("You manage to find a scientist who is overjoyed to recieve the data. He is not able to give you much in compensation but can find a few credits to reward your efforts.")<<endl;					
+					player->removeItem("Recorded dark energy data");
+					player->addItem("100 credits"); 
+					sec->currentStoryStep++; 
+				}
+				
+			}
+			
+			
+			
 			cout << "--Press any key to continue--" <<endl;
 			cin.get();
 		break; 
 		default:  //run this if ths story is over
-		
+			cout << sec->description << endl; 
+			
+			cout << "--Press any key to continue--" <<endl;
+			cin.get();
 		break; 	
 	}
 	

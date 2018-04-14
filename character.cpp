@@ -52,12 +52,12 @@ string Player::viewInventory(){
 Player::Player(){
 	string confirm; 
 	bool isName = false; 
-	
-	inventory.push_back("Various spare parts");
 	inventory.push_back("Warp drive");
+	inventory.push_back("Various spare parts");
 	inventory.push_back("Bloody clothing sample");
+	timer = 72; 
 	
-		cout << "What is your name? : ";
+	cout << "What is your name? : ";
 	
 	do{
 		getline(cin, name); 

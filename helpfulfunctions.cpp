@@ -1,4 +1,10 @@
+//Peter Hapke 
+//peterdhapke@gmail.com
+//3/24/18
 
+/* 
+
+*/
 #include <string>
 #include <cstdlib>
 #include <ctime>

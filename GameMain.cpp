@@ -68,7 +68,9 @@ bool GameMain::move(string direction){
 string GameMain::displayMap(){
 	stringstream output; 
 	string markedMap = asciiMap; 
+	
 	output << "##### Current  Map ##### We are located at the 'x' ####" << endl; 
+	
 	
 	//find the right index number to change
 	int index = 8; //the first row takes 8 characters and is the boundary of the map
@@ -227,7 +229,10 @@ void GameMain::loadWorld(){
 void GameMain::begin(){
 	//run the game loop until the game is over
 	while(!player.gameOver){
-		
+		if (player.timer < 0){
+			player.gameOver = true; 
+		}
+		cout << "===== " << player.timer << "hours remaining =====" <<endl; 
 		cout << displayMap(); 
 		cout << "How would you like to proceed Captain?" << endl; 
 		cout << "You can inspect the ships stores by typing- cargo" << endl; 
@@ -237,10 +242,12 @@ void GameMain::begin(){
 		cout << endl; 
 		string courseOfAction = getAction(); 
 		
-		if (courseOfAction == "warp"){		
+		if (courseOfAction == "warp"){	
+			player.timer--; 	
 			cout << "Let the know helm which direction you want to travel by typing";		
 			while(!move(getDirection(" up, down, left, or right?"))){}
 		} else if(courseOfAction == "inspect"){
+			player.timer--; 
 			exploreSector();
 		} else if(courseOfAction == "cargo"){
 			cout << player.viewInventory()<< endl; 
@@ -266,14 +273,27 @@ void GameMain::begin(){
 				if(retrive != "exit"){
 					map[y][x].pickUpItem(retrive); 
 					player.addItem(retrive); 
+					player.timer--; 
 				}
 			}
 			
 		}
 	
 		
+		
 	}
-
+	
+	if(player.timer >=0){
+		cout << wordWrap("!!!!! You Win !!!!!") <<endl; 
+		cout << wordWrap("Based on all the evidence you were able to provide Private Huln's case was dismissed. It seems no one doubts his innocence...though there are still a few questions unanswered.") <<endl; 
+		
+	} else {
+		cout << wordWrap("**** GAME OVER ****") <<endl; 
+		cout << wordWrap("It seems you took too long trying to gather evidence. Private Huln was put to death according to the customs of an alien judicial system.") <<endl; 
+		
+	}
+	cout << "--Press any key to quit--" <<endl;
+	cin.get();
 
 			
 
