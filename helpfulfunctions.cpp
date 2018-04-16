@@ -32,7 +32,7 @@ string getDirection(string promptText){
 		if(!validChoice){
 			cin.clear();
 			getline(cin, junk);
-			cout << "I do not understand that heading..." << endl; 
+			cout << endl << "I do not understand that heading..." << endl; 
 		}
 		
 	}while(!validChoice); 
@@ -55,7 +55,7 @@ string getAction(){
 		if(!validChoice){
 			cin.clear();
 			getline(cin, junk);
-			cout << "I am sorry I do not know how to pursue that course of action..." << endl; 
+			cout << endl << "I am sorry I do not know how to pursue that course of action..." << endl; 
 		}
 		
 	}while(!validChoice); 
@@ -78,7 +78,7 @@ string getAction(string choice1, string choice2){
 		if(!validChoice){
 			cin.clear();
 			getline(cin, junk);
-			cout << "I am sorry I do not know how to pursue that course of action..." << endl; 
+			cout << endl<< "I am sorry I do not know how to pursue that course of action..." << endl; 
 		}
 	}while(!validChoice); 
 	cin.ignore(); //to ignore the entered whitespace
@@ -100,7 +100,7 @@ string getAction(string choice1, string choice2, string choice3){
 		if(!validChoice){
 			cin.clear();
 			getline(cin, junk);
-			cout << "I am sorry I do not know how to pursue that course of action..." << endl; 
+			cout << endl<< "I am sorry I do not know how to pursue that course of action..." << endl; 
 		}
 	}while(!validChoice); 
 	cin.ignore(); //to ignore the entered whitespace
@@ -114,7 +114,7 @@ string getAction(string choice1, string choice2, string choice3, string choice4)
 	bool validChoice = false; 
 	do{
 
-		cout<< endl << "Choose " << choice1 << ", " << choice2 << ", " << choice3 << ", or" << choice4 << ": "; 
+		cout<< endl << "Choose " << choice1 << ", " << choice2 << ", " << choice3 << ", or " << choice4 << ": "; 
 		cin >> choice; 
 		if (choice == choice1 || choice == choice2  || choice == choice3 || choice == choice4){
 			validChoice = true;
@@ -123,7 +123,7 @@ string getAction(string choice1, string choice2, string choice3, string choice4)
 		if(!validChoice){
 			cin.clear();
 			getline(cin, junk);
-			cout << "I am sorry I do not know how to pursue that course of action..." << endl; 
+			cout << endl<< "I am sorry I do not know how to pursue that course of action..." << endl; 
 		}
 	}while(!validChoice); 
 	cin.ignore(); //to ignore the entered whitespace
@@ -157,7 +157,7 @@ string getAction(vector<string> list){
 		
 		if(!validChoice){
 			cin.clear();
-			cout << "I am sorry I do not know how to pursue that course of action..." << endl; 
+			cout << endl<< "I am sorry I do not know how to pursue that course of action..." << endl; 
 		}
 	}while(!validChoice); 
 	return choice; 
@@ -197,7 +197,36 @@ string wordWrap(string given){
 	}
 	return output.str(); 
 }
+void mainScreen(){
+	//ascii art - http://patorjk.com/software/taag/#p=display&f=Graffiti&t=SpaceTrial
+	
+	/*
+  _________                                ___________        .__         .__   
+ /   _____/______  _____     ____    ____  \__    ___/_______ |__|_____   |  |  
+ \_____  \ \____ \ \__  \  _/ ___\ _/ __ \   |    |   \_  __ \|  |\__  \  |  |  
+ /        \|  |_> > / __ \_\  \___ \  ___/   |    |    |  | \/|  | / __ \_|  |__
+/_______  /|   __/ (____  / \___  > \___  >  |____|    |__|   |__|(____  /|____/
+        \/ |__|         \/      \/      \/                             \/        
+	*/
 
+
+	cout << "WELCOME TO:" << endl; 
+	cout << "  _________                                ___________        .__         .__   " << endl; 
+	cout << " /   _____/______  _____     ____    ____  \\__    ___/_______ |__|_____   |  |  " << endl; 
+	cout << " \\_____  \\ \\____ \\ \\__  \\  _/ ___\\ _/ __ \\   |    |   \\_  __ \\|  |\\__  \\  |  |  " << endl; 
+	cout << " /        \\|  |_> > / __ \\_\\  \\___ \\  ___/   |    |    |  | \\/|  | / __ \\_|  |__" << endl; 
+	cout << "/_______  /|   __/ (____  / \\___  > \\___  >  |____|    |__|   |__|(____  /|____/" << endl; 
+	cout << "        \\/ |__|         \\/      \\/      \\/                             \\/       " << endl; 
+	cout << "                                                                  by Peter Hapke" << endl; 
+	cout << endl; 
+	cout << endl; 
+	cout << endl; 
+	cout << endl; 
+	cout << "--Press Enter to Start the Game--" <<endl;
+	cin.get();
+	
+	
+}
 
 
 

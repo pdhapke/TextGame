@@ -22,6 +22,7 @@ string getAction(string, string, string);
 string getAction(string, string, string, string);
 string getAction(vector<string>);
 string wordWrap(string given); 
+void mainScreen(); 
 
 
 #endif

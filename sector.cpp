@@ -109,7 +109,7 @@ bool sec01RunFunction(Sector *sec, Player* player){
 		case 0:  //case zero is called upon initialization so it contains the default text of the story and sets it accordingly
 			sec->currentStoryStep++; 
 			
-			output << "This empty save for the sole commet traveling through interstellar space. Here on the edge of the charted territories there is very little in the way of life. Though peacful it is best to get back to finding evidence of Huln's innocence."; 
+			output << "This sector is empty save for the sole commet traveling through interstellar space. Here on the edge of the charted territories there is very little in the way of life. Though peacful it is best to get back to finding evidence of Huln's innocence."; 
 			
 			sec->description = wordWrap(output.str());
 		break; 
@@ -136,7 +136,7 @@ bool sec02RunFunction(Sector *sec, Player* player){
 		case 0:  //case zero is called upon initialization so it contains the default text of the story and sets it accordingly
 			sec->currentStoryStep++; 
 			sec->dropItem("Pure Ice Comet"); 
-			output << "This sector has an unusually high concentration of water worlds and icy comets. Often a source of mining for known space."; 
+			output << "This sector has an unusually high concentration of water worlds and icy comets. Often a source of H20 mining for mapped space."; 
 			
 			sec->description = wordWrap(output.str());
 		break; 
@@ -219,6 +219,8 @@ bool sec04RunFunction(Sector *sec, Player* player){
 				
 			} else {
 				cout << wordWrap("We might lose more time than we can afford navigating this storm....") << endl; 
+				cout << "--You have lost 2 hours"; 
+				player->timer-=2; 
 			}
 			
 			
@@ -269,6 +271,10 @@ bool sec05RunFunction(Sector *sec, Player* player){
 						cout << wordWrap("Thank you... We we surely let the rest of the sector know.") << endl; 
 						player->addItem("Translation Device"); 
 						sec->currentStoryStep++; 
+					} else {
+						if(!sec->hasItemInSector("Translation Device")){
+							sec->dropItem("Translation Device"); 
+						}	
 					}	
 				}
 			
@@ -396,7 +402,7 @@ bool sec08RunFunction(Sector *sec, Player* player){
 			if (player->hasItem("Translation Device")){
 				cout<< wordWrap("Translation Device: Shhhh go away we are hiding...")<<endl;
 			} else {
-				cout<< wordWrap("1651 46568 4983 4685469 84368 36941685 894654 49685 45 9 87 3")<<endl;
+				cout<< wordWrap(" We are recieving a faint transmission: 1651 46568 4983 4685469 84368 36941685 894654 49685 45 9 87 3")<<endl;
 			}
 			
 			
@@ -612,12 +618,15 @@ bool sec13RunFunction(Sector *sec, Player* player){
 				if(choice == "translator"){
 					cout << wordWrap("That will be 100 credits, enjoy!") << endl; 
 					player->addItem("Translation Device"); 
+					player->removeItem("100 Credits");
 				} else if(choice == "sensors"){
 					cout << wordWrap("That will be 100 credits, enjoy!") << endl; 
 					player->addItem("Mining Sensors"); 
+					player->removeItem("100 Credits");
 				} else if (choice == "weapons"){
 					cout << wordWrap("That will be 100 credits, enjoy!") << endl; 
 					player->addItem("Beam Cannon"); 
+					player->removeItem("100 Credits");
 				}
 				
 			}else {
@@ -899,14 +908,14 @@ bool sec19RunFunction(Sector *sec, Player* player){
 			}
 			
 			
-			cout << "--Press any key to continue--" <<endl;
+			cout << "--Press Enter to continue--" <<endl;
 			cin.get();
 		break; 
 		default:  //run this if ths story is over
 			cout << sec->description << endl; 
 			
 			
-			cout << "--Press any key to continue--" <<endl;
+			cout << "--Press Enter to continue--" <<endl;
 			cin.get();
 		break; 	
 	}
@@ -937,14 +946,14 @@ bool sec20RunFunction(Sector *sec, Player* player){
 					sec->currentStoryStep++; 
 				}
 			
-			cout << "--Press any key to continue--" <<endl;
+			cout << "--Press Enter to continue--" <<endl;
 			cin.get();
 		break; 
 		default:  //run this if ths story is over
 			cout << sec->description << endl; 
 			
 			
-			cout << "--Press any key to continue--" <<endl;
+			cout << "--Press Enter to continue--" <<endl;
 			cin.get();
 		break; 	
 	}
@@ -999,7 +1008,7 @@ bool success = true;
 			 }
 			
 			
-			cout << "--Press any key to continue--" <<endl;
+			cout << "--Press Enter to continue--" <<endl;
 			cin.get();
 		break; 
 		default:  //run this if ths story is over
@@ -1026,7 +1035,7 @@ bool sec22RunFunction(Sector *sec, Player* player){
 			cout << sec->description << endl; 
 		
 			
-			cout << "--Press any key to continue--" <<endl;
+			cout << "--Press Enter to continue--" <<endl;
 			cin.get();	
 		break; 
 		default:  //run this if ths story is over
@@ -1067,13 +1076,13 @@ bool sec23RunFunction(Sector *sec, Player* player){
 					cout << "We should leave, there is not much time before the trial." << endl; 
 				}
 			
-			cout << "--Press any key to continue--" <<endl;
+			cout << "--Press Enter to continue--" <<endl;
 			cin.get();	
 		break; 
 		default:  //run this if ths story is over
 			cout << sec->description << endl; 
 			
-			cout << "--Press any key to continue--" <<endl;
+			cout << "--Press Enter to continue--" <<endl;
 			cin.get();
 		break; 	
 	}
@@ -1113,12 +1122,12 @@ bool sec24RunFunction(Sector *sec, Player* player){
 				
 			}
 			
-			cout << "--Press any key to continue--" <<endl;
+			cout << "--Press Enter to continue--" <<endl;
 			cin.get();
 		break; 
 		default:  //run this if ths story is over
 			cout << wordWrap("It appears Cree is no longer in this sector. We should leave before we interfere with the shipping lanes.") << endl; 
-			cout << "--Press any key to continue--" <<endl;
+			cout << "--Press Enter to continue--" <<endl;
 			cin.get();
 		break; 	
 	}
@@ -1148,7 +1157,7 @@ bool sec25RunFunction(Sector *sec, Player* player){
 				if(choice == "donate"){
 					cout << wordWrap("You manage to find a scientist who is overjoyed to recieve the data. He is not able to give you much in compensation but can find a few credits to reward your efforts.")<<endl;					
 					player->removeItem("Recorded dark energy data");
-					player->addItem("100 credits"); 
+					player->addItem("100 Credits"); 
 					sec->currentStoryStep++; 
 				}
 				
@@ -1156,13 +1165,13 @@ bool sec25RunFunction(Sector *sec, Player* player){
 			
 			
 			
-			cout << "--Press any key to continue--" <<endl;
+			cout << "--Press Enter to continue--" <<endl;
 			cin.get();
 		break; 
 		default:  //run this if ths story is over
 			cout << sec->description << endl; 
 			
-			cout << "--Press any key to continue--" <<endl;
+			cout << "--Press Enter to continue--" <<endl;
 			cin.get();
 		break; 	
 	}

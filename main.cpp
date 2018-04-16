@@ -48,6 +48,7 @@ void testGame(){
 }
 
 void runGame(){
+	mainScreen(); 
 	GameMain game; 
 	game.begin();
 	

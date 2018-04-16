@@ -58,7 +58,7 @@ bool GameMain::move(string direction){
 	if(validDirection){
 		cout << "Course set captain!" << endl<< endl; 
 	} else {
-		cout << "The sector in that direction is uncharted..." << endl; 
+		cout <<endl<< "The sector in that direction is uncharted..." << endl; 
 	}
 	
 	return validDirection; 
@@ -89,13 +89,14 @@ string GameMain::displayMap(){
 	return output.str(); 	
 }; 
 
+
 //this function loads the game map
 void GameMain::loadWorld(){
 	//the asciiMap that corresponds to this loaded world
 	//this map is 8 characters wide and 6 tall, with an additional character 
 	//added to the width by the endl command
 	stringstream output; 
-	
+	system("CLS"); 
 	//setup the story here so that the brief time the player is reading the computer can run a few lines and prepare the game
 	cout << "Captain on the bridge!" << endl; 
 	cout << "It seems we have a problem Captain " << player.name << ". " << endl; 
@@ -230,6 +231,7 @@ void GameMain::loadWorld(){
 void GameMain::begin(){
 	//run the game loop until the game is over
 	while(!player.gameOver){
+		system("CLS"); 
 		if (player.timer < 0){
 			player.gameOver = true; 
 		}
@@ -241,10 +243,11 @@ void GameMain::begin(){
 		
 		cout << displayMap(); 
 		cout << "How would you like to proceed Captain?" << endl; 
-		cout << "You can inspect the ships stores by typing- cargo" << endl; 
-		cout << "You can look around the current location by typing - inspect" << endl; 
-		cout << "You can scan the area for floatsom by typing - scan" << endl;
-		cout << "You can visit another sector of space by typing - warp" << endl; 
+		cout << "Time required / Action " << endl;
+		cout << "  (1 hour)    You can look around the current location by typing - inspect" << endl; 
+		cout << "  (1 hour)    You can visit another sector of space by typing - warp" << endl; 
+		cout << "  ( none )    You can scan the area for floatsom by typing - scan" << endl;
+		cout << "  ( none )    You can inspect the ships stores by typing- cargo" << endl; 
 		cout << endl; 
 		string courseOfAction = getAction(); 
 		
@@ -260,7 +263,7 @@ void GameMain::begin(){
 			exploreSector();
 		} else if(courseOfAction == "cargo"){
 			cout << player.viewInventory()<< endl; 
-			cout << "You can jettison items you no longer want or leave.";
+			cout << "You can jettison items you no longer want ( none )  or leave.";
 			if (getAction("jettison", "leave") == "jettison"){
 				cout << "type the name of the item you want to eject into space: ";
 				string ejectItem = getAction(player.inventory); 
@@ -279,18 +282,18 @@ void GameMain::begin(){
 			cout << map[y][x].listItemsInSector(); 
 			
 			if (map[y][x].itemsInSector.size() != 0){
-				cout << "What item would you like to retrive?: "; 
+				cout << "What item would you like to retrive (1 hour)?: "; 
 				string retrive = getAction(map[y][x].itemsInSector); 
 				
 				if(retrive != "exit"){
 					map[y][x].pickUpItem(retrive); 
 					player.addItem(retrive); 
 					player.timer--; 
-					cout << "--Press Enter to continue--" <<endl;
-					cin.get();
+					
 				}
 				
-				
+				cout << "--Press Enter to continue--" <<endl;
+				cin.get();
 			}
 			
 		}
