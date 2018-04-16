@@ -55,7 +55,7 @@ Player::Player(){
 	inventory.push_back("Warp drive");
 	inventory.push_back("Various spare parts");
 	inventory.push_back("Bloody clothing sample");
-	timer = 72; 
+	timer = 48; 
 	
 	cout << "What is your name? : ";
 	

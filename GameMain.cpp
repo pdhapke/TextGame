@@ -114,7 +114,8 @@ void GameMain::loadWorld(){
 	cout << "from a passing Reon." << endl; 
 		//give some space 
 	cout << endl; 
-	
+	cout << "--Press Enter to continue--" <<endl;
+	cin.get();
 	
 	//this is the base map look as ascii art, it will not work because
 	//the unicode character is not recognized, the following code converts this map
@@ -232,7 +233,12 @@ void GameMain::begin(){
 		if (player.timer < 0){
 			player.gameOver = true; 
 		}
-		cout << "===== " << player.timer << "hours remaining =====" <<endl; 
+		if (player.timer >= 0){
+			cout << "===== " << player.timer << " hours remaining =====" <<endl; 	
+		} else {
+			cout << "===== The Trial is starting! Hurry! =====" <<endl; 
+		}
+		
 		cout << displayMap(); 
 		cout << "How would you like to proceed Captain?" << endl; 
 		cout << "You can inspect the ships stores by typing- cargo" << endl; 
@@ -241,6 +247,9 @@ void GameMain::begin(){
 		cout << "You can visit another sector of space by typing - warp" << endl; 
 		cout << endl; 
 		string courseOfAction = getAction(); 
+		
+		cout <<endl; 
+		cout << "~~~~~~~~~~~~~~~ Action ~~~~~~~~~~~~~~~" << endl; 
 		
 		if (courseOfAction == "warp"){	
 			player.timer--; 	
@@ -251,13 +260,16 @@ void GameMain::begin(){
 			exploreSector();
 		} else if(courseOfAction == "cargo"){
 			cout << player.viewInventory()<< endl; 
-			cout << "You can jettison items you no longer want or leave";
+			cout << "You can jettison items you no longer want or leave.";
 			if (getAction("jettison", "leave") == "jettison"){
 				cout << "type the name of the item you want to eject into space: ";
 				string ejectItem = getAction(player.inventory); 
 				if (ejectItem != "exit"){
 					player.removeItem(ejectItem);
 					map[y][x].dropItem(ejectItem);
+					
+					cout << "--Press Enter to continue--" <<endl;
+					cin.get();
 				} 
 			}
 		} else if (courseOfAction == "scan"){
@@ -274,7 +286,11 @@ void GameMain::begin(){
 					map[y][x].pickUpItem(retrive); 
 					player.addItem(retrive); 
 					player.timer--; 
+					cout << "--Press Enter to continue--" <<endl;
+					cin.get();
 				}
+				
+				
 			}
 			
 		}
@@ -292,7 +308,7 @@ void GameMain::begin(){
 		cout << wordWrap("It seems you took too long trying to gather evidence. Private Huln was put to death according to the customs of an alien judicial system.") <<endl; 
 		
 	}
-	cout << "--Press any key to quit--" <<endl;
+	cout << "--Press Enter to quit--" <<endl;
 	cin.get();
 
 			

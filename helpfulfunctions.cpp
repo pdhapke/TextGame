@@ -69,7 +69,7 @@ string getAction(string choice1, string choice2){
 	bool validChoice = false; 
 	do{
 
-		cout << "Choose " << choice1 << " or " << choice2 << ": "; 
+		cout<< endl <<  "Choose " << choice1 << " or " << choice2 << ": "; 
 		cin >> choice; 
 		if (choice == choice1 || choice == choice2){
 			validChoice = true;
@@ -91,7 +91,7 @@ string getAction(string choice1, string choice2, string choice3){
 	bool validChoice = false; 
 	do{
 
-		cout << "Choose " << choice1 << ", " << choice2 << ", or" << choice3 << ": "; 
+		cout<< endl << "Choose " << choice1 << ", " << choice2 << ", or " << choice3 << ": "; 
 		cin >> choice; 
 		if (choice == choice1 || choice == choice2  || choice == choice3){
 			validChoice = true;
@@ -114,7 +114,7 @@ string getAction(string choice1, string choice2, string choice3, string choice4)
 	bool validChoice = false; 
 	do{
 
-		cout << "Choose " << choice1 << ", " << choice2 << ", " << choice3 << ", or" << choice4 << ": "; 
+		cout<< endl << "Choose " << choice1 << ", " << choice2 << ", " << choice3 << ", or" << choice4 << ": "; 
 		cin >> choice; 
 		if (choice == choice1 || choice == choice2  || choice == choice3 || choice == choice4){
 			validChoice = true;
@@ -139,15 +139,14 @@ string getAction(vector<string> list){
 	for (int i = 0; i < (list.size()); i++){
 		output << list[i] << ", "; 
     }
-    output << ", or exit to go back"; 
+    output << "or exit to go back: "; 
 
 	bool validChoice = false; 
 	do{
-	cout << wordWrap(output.str()); 
-				
-		cin >> choice; 
+	cout << endl << wordWrap(output.str()); 
+		getline(cin, choice);
 		for(int k = 0; k < list.size(); k++){
-			if (choice == list[k]){
+			if (choice == (list[k])){
 				validChoice = true;
 			}	
 		}
@@ -158,11 +157,9 @@ string getAction(vector<string> list){
 		
 		if(!validChoice){
 			cin.clear();
-			getline(cin, junk);
 			cout << "I am sorry I do not know how to pursue that course of action..." << endl; 
 		}
 	}while(!validChoice); 
-	cin.ignore(); //to ignore the entered whitespace
 	return choice; 
 }
 

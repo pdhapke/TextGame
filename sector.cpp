@@ -607,7 +607,7 @@ bool sec13RunFunction(Sector *sec, Player* player){
 			cout << sec->description << endl; 
 			
 			if (player->hasItem("100 Credits")){
-				cout << wordWrap("I have numerous wares for sale. Please take some time to look at my supplies. I have translators, sensors, and even weapons for purchase. What would you like to buy?") << endl; 
+				cout << wordWrap("I have numerous wares for sale. Please take some time to look at my supplies and let me know how that phase columnator is workin out. I have translators, sensors, and even weapons for purchase. What would you like to buy?") << endl; 
 				choice = getAction("leave", "translator", "sensors", "weapons"); 
 				if(choice == "translator"){
 					cout << wordWrap("That will be 100 credits, enjoy!") << endl; 
@@ -644,7 +644,7 @@ bool sec14RunFunction(Sector *sec, Player* player){
 		case 0:  //case zero is called upon initialization so it contains the default text of the story and sets it accordingly
 			sec->currentStoryStep++; 
 			
-			output << "This sector is known for its shipyards and manufacturing centers."; 
+			output << "This sector is known for its shipyards and manufacturing centers. I think we picked up a transfer capacitor from one of the merchants who frequents this sector."; 
 			
 			sec->description = wordWrap(output.str());
 		break; 
@@ -734,7 +734,7 @@ bool sec16RunFunction(Sector *sec, Player* player){
 		break; 
 		case 1:
 			cout << sec->description << endl; 
-			cout << wordWrap("This might be the best place to gather information") <<endl; 
+			cout << wordWrap("This might be the best place to gather information, the best place to start is the merchant who sold the subspace modulator to our crewman.") <<endl; 
 			choice = getAction("investigate", "leave"); 
 			
 			if (choice == "investigate"){
@@ -782,7 +782,7 @@ bool sec17RunFunction(Sector *sec, Player* player){
 						
 			if(player->hasItem("Memory crystal")){
 				cout << "The accused is allowed a memory crystal" << endl; 
-				cout << "Would you like to leave the crystal here as evidence?"<<endl; 
+				cout << "Would you like to hand over the crystal as evidence?"<<endl; 
 				choice = getAction("yes", "no");
 				if(choice == "yes"){
 					player->removeItem("Memory crystal"); 
@@ -792,7 +792,7 @@ bool sec17RunFunction(Sector *sec, Player* player){
 			} 
 			if(player->hasItem("Evidence - Terran currency")){
 				cout << "This is the currency used to buy the weapon! It even has fingerprints..." << endl; 
-				cout << "Would you like to leave the crystal here as evidence?"<<endl;
+				cout << "Would you like to hand over the currency as evidence?"<<endl;
 				choice = getAction("yes", "no");
 				if(choice == "yes"){
 					player->removeItem("Evidence - Terran currency"); 
@@ -801,7 +801,7 @@ bool sec17RunFunction(Sector *sec, Player* player){
 			}
 			if(player->hasItem("Blood - blood sample from Cree")){
 				cout << "This blood matches what we found, and it proves the victim is alive!" << endl; 
-				cout << "Would you like to leave the crystal here as evidence?"<<endl; 
+				cout << "Would you like to hand over the blood sample as evidence?"<<endl; 
 				choice = getAction("yes", "no");
 				if(choice == "yes"){
 					player->removeItem("Blood - blood sample from Cree"); 
@@ -810,7 +810,7 @@ bool sec17RunFunction(Sector *sec, Player* player){
 			}
 			if(player->hasItem("Alibi -  witness statement")){
 				cout << "This alibi means Huln was not in the area..." << endl; 
-				cout << "Would you like to leave the crystal here as evidence?"<<endl; 
+				cout << "Would you like to enter the alibi as evidence?"<<endl; 
 				choice = getAction("yes", "no");
 				if(choice == "yes"){
 					player->removeItem("Alibi -  witness statement"); 
