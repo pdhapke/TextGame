@@ -3,6 +3,10 @@
 //3/24/18
 
 /* 
+These are a series of helpful functions that can be called from anywhere to make the programing easier. 
+I have included random number generation, data validation, and sentence/word wrapping to make the program 
+work nicer and look better. At the bottom I also included some ascii art functions to make begin and end
+look fancy. 
 
 */
 #include <string>
@@ -228,5 +232,32 @@ void mainScreen(){
 	
 }
 
+void gameOverScreen(){
+	
+	/*  http://patorjk.com/software/taag/#p=testall&f=Doom&t=GAME%20OVER
+	
+ _______  _______  __   __  _______    _______  __   __  _______  ______   
+|       ||   _   ||  |_|  ||       |  |       ||  | |  ||       ||    _ |  
+|    ___||  |_|  ||       ||    ___|  |   _   ||  |_|  ||    ___||   | ||  
+|   | __ |       ||       ||   |___   |  | |  ||       ||   |___ |   |_||_ 
+|   ||  ||       ||       ||    ___|  |  |_|  ||       ||    ___||    __  |
+|   |_| ||   _   || ||_|| ||   |___   |       | |     | |   |___ |   |  | |
+|_______||__| |__||_|   |_||_______|  |_______|  |___|  |_______||___|  |_|
+	
+	*/
+	cout << endl; 
+	cout << " _______  _______  __   __  _______    _______  __   __  _______  ______   " << endl; 
+	cout << "|       ||   _   ||  |_|  ||       |  |       ||  | |  ||       ||    _ |  " << endl; 
+	cout << "|    ___||  |_|  ||       ||    ___|  |   _   ||  |_|  ||    ___||   | ||  " << endl; 
+	cout << "|   | __ |       ||       ||   |___   |  | |  ||       ||   |___ |   |_||_ " << endl; 
+	cout << "|   ||  ||       ||       ||    ___|  |  |_|  ||       ||    ___||    __  |" << endl; 
+	cout << "|   |_| ||   _   || ||_|| ||   |___   |       | |     | |   |___ |   |  | |" << endl; 
+	cout << "|_______||__| |__||_|   |_||_______|  |_______|  |___|  |_______||___|  |_|" << endl; 
+	cout << endl; 
+	
+	
+	
+	
+}
 
 

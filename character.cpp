@@ -24,10 +24,13 @@ bool Player::hasItem(string item){
 	return false; 
 }
 
+//add an item to the player inventory and notify the player
 bool Player::addItem(string item){
 	inventory.push_back(item);
 	cout << "--you have gained: " << item << endl; 
 } 
+
+//take an item from the players inventory and notify the player
 bool Player::removeItem(string item){
 	if(hasItem(item)){
 		for (int i = 0; i < inventory.size(); i++){
@@ -41,6 +44,8 @@ bool Player::removeItem(string item){
 	}
 	return false; 
 }
+
+//create a string output of the player inventory numbered for reading
 string Player::viewInventory(){
 	stringstream output; 
 	for (int i = 0; i < inventory.size(); i++){
@@ -48,17 +53,20 @@ string Player::viewInventory(){
 	}
 	return output.str(); 	
 }
-
+//constructor
 Player::Player(){
 	string confirm; 
 	bool isName = false; 
+	//ready the player inventory. 
 	inventory.push_back("Warp drive");
 	inventory.push_back("Various spare parts");
 	inventory.push_back("Bloody clothing sample");
+	
+	//set the player timer. 36 hours did not leave enough room so 48 hours was 
 	timer = 48; 
 	
+	//get the players name and confirm it 
 	cout << "What is your name? : ";
-	
 	do{
 		getline(cin, name); 
 		
@@ -73,12 +81,10 @@ Player::Player(){
 			cout << "Okay....I will ask again then." << endl; 
 			cout << "What is REALLY your name? : "; 
 		}
-		
-		
-		
 	}while(!isName);
 	
 	
 }
+//an empty player constructor made so that the the gamemain constructor does not need to make new players while it creates the sectors 
 Player::Player(bool emptyplayer){
 }; 

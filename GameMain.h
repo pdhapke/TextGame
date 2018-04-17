@@ -3,7 +3,7 @@
 //3/24/18
 
 /* 
-This code lays out the sector and map classes so that a world map can be built using sector pieces in a 2-d vector
+This code lays out the  map and main game functions so that a world map can be built using sector pieces in a 2-d vector
 each sector piece would give all the scenario and code needed for that particular location, helping to modularize the pieces. 
 This allows the pieces to be randomly distributed later (if I have time) and the vector nature allows the size of the map
 to change without having to go back and change the variable type

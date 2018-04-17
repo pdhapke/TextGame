@@ -2,7 +2,9 @@
 //peterdhapke@gmail.com
 //3/24/18
 
-//sets up the headers for some helpful functions
+//sets up the headers for some helpful functions 
+//These are a series of helpful functions that can be called from anywhere to make the programing easier. 
+
 
 #pragma once
 #ifndef HELPFULFUNCTIONS_H
@@ -23,6 +25,6 @@ string getAction(string, string, string, string);
 string getAction(vector<string>);
 string wordWrap(string given); 
 void mainScreen(); 
-
+void gameOver();
 
 #endif

@@ -41,12 +41,34 @@ class Sector {
 };
 
 //this is the template sector function which will be used as a base for all sectors
-bool sec0RunFunction(Sector *sec, Player*);
+bool sec00RunFunction(Sector *sec, Player*);
 
 //these are the used sector functions
-bool sec1RunFunction(Sector *sec, Player*); 
-
-
+bool sec01RunFunction(Sector *sec, Player*); 
+bool sec02RunFunction(Sector *sec, Player*); 
+bool sec03RunFunction(Sector *sec, Player*); 
+bool sec04RunFunction(Sector *sec, Player*); 
+bool sec05RunFunction(Sector *sec, Player*); 
+bool sec06RunFunction(Sector *sec, Player*); 
+bool sec07RunFunction(Sector *sec, Player*); 
+bool sec08RunFunction(Sector *sec, Player*); 
+bool sec09RunFunction(Sector *sec, Player*); 
+bool sec10RunFunction(Sector *sec, Player*); 
+bool sec11RunFunction(Sector *sec, Player*); 
+bool sec12RunFunction(Sector *sec, Player*); 
+bool sec13RunFunction(Sector *sec, Player*); 
+bool sec14RunFunction(Sector *sec, Player*); 
+bool sec15RunFunction(Sector *sec, Player*); 
+bool sec16RunFunction(Sector *sec, Player*); 
+bool sec17RunFunction(Sector *sec, Player*); 
+bool sec18RunFunction(Sector *sec, Player*); 
+bool sec19RunFunction(Sector *sec, Player*); 
+bool sec20RunFunction(Sector *sec, Player*); 
+bool sec21RunFunction(Sector *sec, Player*); 
+bool sec22RunFunction(Sector *sec, Player*); 
+bool sec23RunFunction(Sector *sec, Player*); 
+bool sec24RunFunction(Sector *sec, Player*); 
+bool sec25RunFunction(Sector *sec, Player*); 
 
 
 #endif

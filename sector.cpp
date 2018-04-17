@@ -4,7 +4,8 @@
 
 /* 
 This code is the main code for the game and details the story for each sector
-of the map individually. 
+of the map individually. I did this so that each sector would share the same code, but differ
+in the details so I could change the interactions. 
 */
 
 #include <string>
@@ -33,6 +34,8 @@ Recorded dark energy data
 Pure Ice Comet
 Mining Sensors
 */
+
+//this function is used to inspect the items in the current sector for the play to possibly pick up
 string Sector::listItemsInSector(){
 	stringstream output; 
 	if(itemsInSector.size() != 0){
@@ -44,9 +47,13 @@ string Sector::listItemsInSector(){
 	}
 	return output.str(); 
 }
+
+//function to allow the player to drop an item in the current sector 
 bool Sector::dropItem(string item){
 	itemsInSector.push_back(item);
 }
+
+//used to check if the current sector has a certain item
 bool Sector::hasItemInSector(string item){
 		for (int i = 0; i < itemsInSector.size(); i++){
 			if (itemsInSector[i] == item){
@@ -55,6 +62,8 @@ bool Sector::hasItemInSector(string item){
 	}
 	return false; 
 }
+
+//used by the player to pick up an item, deleting it from the sector
 bool Sector::pickUpItem(string item) {
 		if(hasItemInSector(item)){
 			for (int i = 0; i < itemsInSector.size(); i++){
@@ -74,18 +83,28 @@ bool sec00RunFunction(Sector *sec, Player* player){
 	stringstream output; 
 	switch(sec->currentStoryStep){
 		case 0:  //case zero is called upon initialization so it contains the default text of the story and sets it accordingly
+			//increment the step of the story so it progresses from one to the next. 
+			//this could have used an if/then clause but I wrote it originally so that some sectors could
+			//more easily have many steps in their story. Possibly moving back and fourth through them. This did not happen
+			//because it was already so much work to get them working with two steps
 			sec->currentStoryStep++; 
 			
+			//create the text of the story
 			output << "story"; 
 			
+			//set the basic description to be used
 			sec->description = output.str(); 
 		
 		break; 
 		case 1:
+			//default first step in the story
+			//describe the current sector
 			cout << sec->description << endl; 
 			
+			//run any code needed in here
 			
-			cout << "--Press any key to continue--" <<endl;
+			//prompt for an enter so the text can be read before continuing 
+			cout << "--Press Enter to continue--" <<endl;
 			cin.get();
 		break; 
 		default:  //run this if ths story is over

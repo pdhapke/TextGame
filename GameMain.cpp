@@ -3,7 +3,7 @@
 //3/24/18
 
 /* 
-This code fills in the details of the map and sector class definitions.
+This code fills in the details of the map and the main game function and sector class definitions.
 It then creates the map by building all of the sector objects and placing
 them in the map 2-d vector
 */
@@ -92,9 +92,7 @@ string GameMain::displayMap(){
 
 //this function loads the game map
 void GameMain::loadWorld(){
-	//the asciiMap that corresponds to this loaded world
-	//this map is 8 characters wide and 6 tall, with an additional character 
-	//added to the width by the endl command
+
 	stringstream output; 
 	system("CLS"); 
 	//setup the story here so that the brief time the player is reading the computer can run a few lines and prepare the game
@@ -118,6 +116,7 @@ void GameMain::loadWorld(){
 	cout << "--Press Enter to continue--" <<endl;
 	cin.get();
 	
+
 	//this is the base map look as ascii art, it will not work because
 	//the unicode character is not recognized, the following code converts this map
 	//to the proper form for the compiler
@@ -129,7 +128,11 @@ void GameMain::loadWorld(){
 	output << "|Oº. .|" << endl; 
 	output << "|....:|" << endl; 
 	output << " ¯¯¯¯¯ " << endl; 
-	*/
+	*/	
+	
+	//the asciiMap that corresponds to this loaded world
+	//this map is 8 characters wide and 6 tall, with an additional character 
+	//added to the width by the endl command
 	output << " _____ " << endl; 
 	output << "|'.o..|" << endl; 
 	output << "|....~|" << endl; 
@@ -172,17 +175,15 @@ void GameMain::loadWorld(){
 		Sector sec24(sec24RunFunction); 
 		Sector sec25(sec25RunFunction); 
 	
-		//TODO
 	
-	
-		//setup the row sector vectors
+		//setup the vectors for each row  of sector s
 		vector<Sector> row1;
 		vector<Sector> row2;
 		vector<Sector> row3;
 		vector<Sector> row4;
 		vector<Sector> row5;
 	
-		//build the row sector vectors
+		//build the rows
 		//row1
 		row1.push_back(sec1);
 		row1.push_back(sec2);
@@ -232,6 +233,7 @@ void GameMain::begin(){
 	//run the game loop until the game is over
 	while(!player.gameOver){
 		system("CLS"); 
+		//check for game over condition and choose one of two time displays
 		if (player.timer < 0){
 			player.gameOver = true; 
 		}
@@ -241,6 +243,7 @@ void GameMain::begin(){
 			cout << "===== The Trial is starting! Hurry! =====" <<endl; 
 		}
 		
+		//show the map and ask for an action
 		cout << displayMap(); 
 		cout << "How would you like to proceed Captain?" << endl; 
 		cout << "Time required / Action " << endl;
@@ -249,11 +252,15 @@ void GameMain::begin(){
 		cout << "  ( none )    You can scan the area for floatsom by typing - scan" << endl;
 		cout << "  ( none )    You can inspect the ships stores by typing- cargo" << endl; 
 		cout << endl; 
-		string courseOfAction = getAction(); 
 		
+		//get the base player action
+		string courseOfAction = getAction(); 
+	
+		//render the player action in a new area
 		cout <<endl; 
 		cout << "~~~~~~~~~~~~~~~ Action ~~~~~~~~~~~~~~~" << endl; 
 		
+		//fill in the action based on the choice above
 		if (courseOfAction == "warp"){	
 			player.timer--; 	
 			cout << "Let the know helm which direction you want to travel by typing";		
@@ -302,15 +309,18 @@ void GameMain::begin(){
 		
 	}
 	
+	//once the loop is ended declare victory or loss
 	if(player.timer >=0){
 		cout << wordWrap("!!!!! You Win !!!!!") <<endl; 
 		cout << wordWrap("Based on all the evidence you were able to provide Private Huln's case was dismissed. It seems no one doubts his innocence...though there are still a few questions unanswered.") <<endl; 
 		
 	} else {
-		cout << wordWrap("**** GAME OVER ****") <<endl; 
+		gameOverScreen(); 
 		cout << wordWrap("It seems you took too long trying to gather evidence. Private Huln was put to death according to the customs of an alien judicial system.") <<endl; 
 		
 	}
+	
+	//the player read the screen
 	cout << "--Press Enter to quit--" <<endl;
 	cin.get();
 
