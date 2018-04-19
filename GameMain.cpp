@@ -102,17 +102,21 @@ void GameMain::loadWorld(){
 	cout << "It appears he was seen at the crime scence, the victims blood was found on his clothes," << endl; 
 	cout << "only memory crystals are allowed from accused, and the weapon was bought with Terran currency." << endl; 
 	cout << endl;
-	cout << "If we are to mount a defense we will need to gather ourwarp own evidence." << endl;  
-	cout << "We should try to gather three strong pieces of evidence to exonerate Private Huln." << endl <<endl; 
+	cout << "If we are to mount a defense we will need to gather our own evidence." << endl;  
+	cout << "We should try to gather four strong pieces of evidence to exonerate Private Huln." << endl <<endl; 
 	cout << "Speaking with the Private it appears that he may have been set up. He can recall" << endl;		
 	cout << "colliding with a Ulen, but says it was not the same species who was killed." << endl;  			//blood breadcrumb
 	cout << "As a matter of fact he was speaking with a Parvc when the alleged attack took place." << endl; //alibi breadcrumb
 	cout << "From the reports of the rest of the crew, it seems only three used Terran currency to" << endl; //payment breadcrumb
 	cout << "make purchases during our shore leave. The items purchased were a transfer capacitor " << endl; //payment breadcrumb
 	cout << "from a local Ulen, a subspace modulator from a nearby Jovin, and a phase columnator  " << endl; //payment breadcrumb
-	cout << "from a passing Reon." << endl; 
+	cout << "from a passing Reon." << endl << endl; 
+	
+	cout << "The trial will begin in 48 HOURS and must present FOUR pieces of EVIDENCE. " << endl; 
+	cout << "Anything we want to prepare must be completed and brought here before then." << endl;
+	
 		//give some space 
-	cout << endl; 
+	cout << endl <<endl; 
 	cout << "--Press Enter to continue--" <<endl;
 	cin.get();
 	
@@ -248,8 +252,8 @@ void GameMain::begin(){
 		cout << "How would you like to proceed Captain?" << endl; 
 		cout << "Time required / Action " << endl;
 		cout << "  (1 hour)    You can look around the current location by typing - inspect" << endl; 
-		cout << "  (1 hour)    You can visit another sector of space by typing - warp" << endl; 
-		cout << "  ( none )    You can scan the area for floatsom by typing - scan" << endl;
+		cout << "  (1 hour)    You can travel to another sector of space by typing - warp" << endl; 
+		cout << "  ( none )    You can scan the area for flotsom by typing - scan" << endl;
 		cout << "  ( none )    You can inspect the ships stores by typing- cargo" << endl; 
 		cout << endl; 
 		
@@ -264,7 +268,10 @@ void GameMain::begin(){
 		if (courseOfAction == "warp"){	
 			player.timer--; 	
 			cout << "Let the know helm which direction you want to travel by typing";		
-			while(!move(getDirection(" up, down, left, or right?"))){}
+			while(!move(getDirection(" up, down, left, or right?"))){}; 
+			cout << wordWrap(" ** The FTL engine spins up and the ship lurches into hyperspace **") << endl; 
+			cout << "--Press Enter to continue--" <<endl;
+			cin.get();
 		} else if(courseOfAction == "inspect"){
 			player.timer--; 
 			exploreSector();
@@ -299,10 +306,10 @@ void GameMain::begin(){
 					
 				}
 				
-				cout << "--Press Enter to continue--" <<endl;
-				cin.get();
+				
 			}
-			
+			cout << "--Press Enter to continue--" <<endl;
+			cin.get();
 		}
 	
 		

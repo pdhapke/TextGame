@@ -136,7 +136,7 @@ bool sec01RunFunction(Sector *sec, Player* player){
 			cout << sec->description << endl; 
 			
 			
-			cout << "--Press any key to continue--" <<endl;
+			cout << "--Press Enter to continue--" <<endl;
 			cin.get();
 		break; 
 		default:  //run this if ths story is over
@@ -163,7 +163,7 @@ bool sec02RunFunction(Sector *sec, Player* player){
 			cout << sec->description << endl; 
 			
 			
-			cout << "--Press any key to continue--" <<endl;
+			cout << "--Press Enter to continue--" <<endl;
 			cin.get();
 		break; 
 		default:  //run this if ths story is over
@@ -204,12 +204,12 @@ bool sec03RunFunction(Sector *sec, Player* player){
 			
 						
 			
-			cout << "--Press any key to continue--" <<endl;
+			cout << "--Press Enter to continue--" <<endl;
 			cin.get();
 		break; 
 		default:  //run this if ths story is over
 			cout << sec->description << endl; 
-			cout << "--Press any key to continue--" <<endl;
+			cout << "--Press Enter to continue--" <<endl;
 			cin.get();
 		break; 	
 	}
@@ -243,7 +243,7 @@ bool sec04RunFunction(Sector *sec, Player* player){
 			}
 			
 			
-			cout << "--Press any key to continue--" <<endl;
+			cout << "--Press Enter to continue--" <<endl;
 			cin.get();
 		break; 
 		default:  //run this if ths story is over
@@ -297,13 +297,13 @@ bool sec05RunFunction(Sector *sec, Player* player){
 					}	
 				}
 			
-			cout << "--Press any key to continue--" <<endl;
+			cout << "--Press Enter to continue--" <<endl;
 			cin.get();
 		break; 
 		default:  //run this if ths story is over
 			cout << sec->description << endl; 
 			
-			cout << "--Press any key to continue--" <<endl;
+			cout << "--Press Enter to continue--" <<endl;
 			cin.get();
 		break; 	
 	}
@@ -341,12 +341,12 @@ bool sec06RunFunction(Sector *sec, Player* player){
 					sec->currentStoryStep++; 
 				}
 			 	
-			cout << "--Press any key to continue--" <<endl;
+			cout << "--Press Enter to continue--" <<endl;
 			cin.get();
 		break; 
 		default:  //run this if ths story is over
 				cout << sec->description << endl; 
-				cout << "--Press any key to continue--" <<endl;
+				cout << "--Press Enter to continue--" <<endl;
 				cin.get();
 		break; 	
 	}
@@ -391,12 +391,12 @@ bool sec07RunFunction(Sector *sec, Player* player){
 			 	
 			 }
 			
-			cout << "--Press any key to continue--" <<endl;
+			cout << "--Press Enter to continue--" <<endl;
 			cin.get();
 		break; 
 		default:  //run this if ths story is over
 			cout << sec->description << endl; 
-			cout << "--Press any key to continue--" <<endl;
+			cout << "--Press Enter to continue--" <<endl;
 			cin.get();
 		break; 	
 	}
@@ -425,7 +425,7 @@ bool sec08RunFunction(Sector *sec, Player* player){
 			}
 			
 			
-			cout << "--Press any key to continue--" <<endl;
+			cout << "--Press Enter to continue--" <<endl;
 			cin.get();
 		break; 
 		default:  //run this if ths story is over
@@ -483,7 +483,7 @@ bool sec09RunFunction(Sector *sec, Player* player){
 			 }
 			
 			
-			cout << "--Press any key to continue--" <<endl;
+			cout << "--Press Enter to continue--" <<endl;
 			cin.get();
 		break; 
 		default:  //run this if ths story is over
@@ -529,12 +529,12 @@ bool sec10RunFunction(Sector *sec, Player* player){
 			 	
 			 }
 			
-			cout << "--Press any key to continue--" <<endl;
+			cout << "--Press Enter to continue--" <<endl;
 			cin.get();
 		break; 
 		default:  //run this if ths story is over
 			cout << wordWrap("This sector contains no habitable planets and does not see many ships pass through") << endl; 
-			cout << "--Press any key to continue--" <<endl;
+			cout << "--Press Enter to continue--" <<endl;
 			cin.get();
 		break; 	
 	}
@@ -568,12 +568,12 @@ bool sec11RunFunction(Sector *sec, Player* player){
 				}
 						}
 			
-			cout << "--Press any key to continue--" <<endl;
+			cout << "--Press Enter to continue--" <<endl;
 			cin.get();
 		break; 
 		default:  //run this if ths story is over
 			cout << sec->description << endl; 
-			cout << "--Press any key to continue--" <<endl;
+			cout << "--Press Enter to continue--" <<endl;
 			cin.get();
 		break; 	
 	}
@@ -601,13 +601,13 @@ bool sec12RunFunction(Sector *sec, Player* player){
 			cout << wordWrap("Captain there is a strange reading coming from the starboard side of the ship. I see nothing on the sensors but there is a massive amount of energy coming from a meter wide patch of space. All sensors are recording but we do not know what to make of it.")<<endl;
 			player->addItem("Recorded dark energy data"); 
 				sec->currentStoryStep++; 
-			cout << "--Press any key to continue--" <<endl;
+			cout << "--Press Enter to continue--" <<endl;
 			cin.get();
 			
 		break; 
 		default:  //run this if ths story is over
 			cout << sec->description << endl; 
-			cout << "--Press any key to continue--" <<endl;
+			cout << "--Press Enter to continue--" <<endl;
 			cin.get();
 		break; 	
 	}
@@ -652,7 +652,7 @@ bool sec13RunFunction(Sector *sec, Player* player){
 				cout << "If you have credits I have wares!" << endl; 
 			}
 			
-			cout << "--Press any key to continue--" <<endl;
+			cout << "--Press Enter continue--" <<endl;
 			cin.get();
 		break; 
 		default:  //run this if ths story is over
@@ -688,7 +688,7 @@ bool sec14RunFunction(Sector *sec, Player* player){
 				}
 			}
 			
-			cout << "--Press any key to continue--" <<endl;
+			cout << "--Press Enter to continue--" <<endl;
 			cin.get();
 		break; 
 		default:  //run this if ths story is over
@@ -734,12 +734,12 @@ bool sec15RunFunction(Sector *sec, Player* player){
 				
 			}
 			
-			cout << "--Press any key to continue--" <<endl;
+			cout << "--Press Enter to continue--" <<endl;
 			cin.get();
 		break; 
 		default:  //run this if ths story is over
 			cout << wordWrap("Thanks to the information gathered at this medical station the last time you visited you found a lead to follow.")<<endl; 
-			cout << "--Press any key to continue--" <<endl << endl;
+			cout << "--Press Enter to continue--" <<endl << endl;
 			cin.get();
 		break; 	
 	}
@@ -771,12 +771,12 @@ bool sec16RunFunction(Sector *sec, Player* player){
 				sec->currentStoryStep++; 
 			}
 			
-			cout << "--Press any key to continue--" <<endl;
+			cout << "--Press Enter to continue--" <<endl;
 			cin.get();
 		break; 
 		default:  //run this if ths story is over
 			cout << sec->description << endl; 
-			cout << "--Press any key to continue--" <<endl;
+			cout << "--Press Enter to continue--" <<endl;
 			cin.get();
 		break; 	
 	}
@@ -848,7 +848,7 @@ bool sec17RunFunction(Sector *sec, Player* player){
 			if(sec->currentStoryStep >= 5){
 				cout << wordWrap("The trial is starting! Please return to your ship and gather what you need to make your case") << endl; 
 			}
-			cout << "--Press any key to continue--" <<endl;
+			cout << "--Press Enter to continue--" <<endl;
 			cin.get();
 		break; 
 	
@@ -888,12 +888,12 @@ bool sec18RunFunction(Sector *sec, Player* player){
 				sec->currentStoryStep++; 
 			}
 						
-			cout << "--Press any key to continue--" <<endl;
+			cout << "--Press Enter to continue--" <<endl;
 			cin.get();
 		break; 
 		default:  //run this if ths story is over
 			cout << sec->description << endl; 
-			cout << "--Press any key to continue--" <<endl;
+			cout << "--Press Enter to continue--" <<endl;
 			cin.get(); 
 		break; 	
 	}
